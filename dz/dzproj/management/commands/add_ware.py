@@ -15,6 +15,6 @@ class Command(BaseCommand):
         fprice = random.randint(0, 500)
         fcount = str(random.randint(0, 1000)) + ' pcs'
         fdate = date.today()
-        user = Ware(name=fname, description=fdesc, price=fprice, count=fcount, regdate=fdate)
-        user.save()
-        self.stdout.write(f'{user}')
+        ware = Ware(name=fname, description=fdesc, price=fprice, count=fcount, regdate=fdate)
+        ware.save()
+        self.stdout.write(f'{ware}')

@@ -14,9 +14,9 @@ class Ware(models.Model):
     count = models.CharField(max_length=100)
     regdate = models.DateTimeField(auto_now_add=True)
 
-class Order(models.Model):
-    uid = models.ForeignKey(Client, on_delete=models.CASCADE)
-    wid = models.ManyToManyField
+class Orders(models.Model):
+    uid = models.ForeignKey(Client, on_delete=models.PROTECT)
+    wid = models.ForeignKey(Ware, on_delete=models.PROTECT)
     bill = models.DecimalField(max_digits=8, decimal_places=2)
     regdate = models.DateTimeField(auto_now_add=True)
 
