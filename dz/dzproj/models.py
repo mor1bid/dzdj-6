@@ -23,4 +23,7 @@ class Orders(models.Model):
     bill = models.DecimalField(max_digits=8, decimal_places=2)
     regdate = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.uid}, {self.wid}, {self.bill}'
+
 # Create your models here.
