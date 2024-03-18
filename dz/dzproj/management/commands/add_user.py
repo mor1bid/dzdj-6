@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from dzproj.models import Client
+from dzproj.models import Client, Orders
 from datetime import date
 from faker import Faker
 
@@ -13,5 +13,6 @@ class Command(BaseCommand):
         faddress = fake.address()
         fdate = date.today()
         user = Client(name=fname, email=femail, phone=fphone, address=faddress, regdate=fdate)
+        # order = Orders(ui)
         user.save()
         self.stdout.write(f'{user}')
