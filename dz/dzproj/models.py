@@ -18,9 +18,9 @@ class Ware(models.Model):
 
 class Orders(models.Model):
     uid = LinkColumn('dz:dzproj_client', args=[Accessor('pk')])
-    uid = models.IntegerField(unique=True)
+    uid = models.TextField(default= '')
     wid = LinkColumn('dz:dzproj_ware', args=[Accessor('pk')])
-    wid = models.IntegerField(unique=True)
+    wid = models.TextField(default= '')
     bill = models.DecimalField(max_digits=8, decimal_places=2)
     regdate = models.DateTimeField(auto_now_add=True)
 
