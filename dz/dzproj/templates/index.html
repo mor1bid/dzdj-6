@@ -7,8 +7,9 @@
 </head>
 <body>
     {% block content %}
-    <h1>Главная</h1>
-    <a href="{% url for 'about' %}">Страница 2</a>
+    <h1>Главная страница</h1>
+    <a href="{% url 'about' %}">Страница 2</a>
+    <a href="{% url 'filter' %}">Страница 3 фильтрация заказов</a>
     {% endblock %}
 
 

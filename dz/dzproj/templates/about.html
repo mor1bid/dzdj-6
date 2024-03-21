@@ -1,6 +1,6 @@
-{% extends index.html %}
+{% extends 'index.html' %}
 
 {% block content %}
 <h1>не главная</h1>
-<a href="{% url for 'index' %}">Страница 1</a>
+<a href="{% url 'index' %}">Страница 1</a>
 {% endblock %}

@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         pk = kwargs['pk']
-        ware = Orders.objects.filter(id=pk).first()
+        ware = Orders.objects.filter(pk=pk).first()
         if ware is not None:
             ware.delete()
             self.stdout.write("Запись удалена")

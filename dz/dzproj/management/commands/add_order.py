@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandParser
 from django.shortcuts import get_object_or_404
 from dzproj.models import *
-from datetime import date
+from datetime import datetime
 from faker import Faker
 import random
 
@@ -19,7 +19,7 @@ class Command(BaseCommand):
         myware = kwargs['ware']
         myprice = kwargs['price']
         myprice = kwargs['price']
-        fdate = date.today()
+        fdate = datetime.now().date()
         waresize = Ware.objects.count()
         uname = Client._meta.get_field('name')
         hmn = Client.objects.get(pk=myid)
@@ -30,17 +30,18 @@ class Command(BaseCommand):
             obj = Ware.objects.get(pk=w)
             ware = getattr(obj, wname.attname)
             price = getattr(obj, wprice.attname)
-            if Orders.objects.filter(pk=myid).exists():
-                order = Orders.objects.get(id=myid)
-                order.wid =+ ', ' + str(ware)
-                order.bill =+ myprice
-                order.regdate =+ ', ' + str(fdate)
+            if Orders.objects.filter(pk=myid).exists() and myware == ware and myprice == price:
+                order = Orders.objects.get(pk=myid)
+                order.wid += ', ' + str(ware)
+                order.bill += myprice
+                order.regdate = '2024-03-14'
                 order.save()
                 self.stdout.write('Заказ добавлен к существующему')
-            if myware == ware and myprice == price:
-                order = Orders(uid = name, wid = myware, bill = myprice, regdate = str(fdate))
+                return 0
+            elif myware == ware and myprice == price:
+                order = Orders(uid = name, wid = myware, bill = myprice, regdate = '2024-02-21')
                 order.save()
-                self.stdout.write('Заказ добавлен')
+                self.stdout.write(f"Заказ добавлен. Номер вашего заказа: {getattr(Orders.objects.latest('id'), Orders._meta.get_field('id').attname)}")
                 return 0
             if w==waresize:
                 self.stdout.write('Произошла ошибка. Ваш заказ не был оформлен.')

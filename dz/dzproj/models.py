@@ -22,7 +22,7 @@ class Orders(models.Model):
     wid = LinkColumn('dz:dzproj_ware', args=[Accessor('pk')])
     wid = models.TextField(default= '')
     bill = models.DecimalField(max_digits=8, decimal_places=2)
-    regdate = models.DateTimeField(auto_now_add=True)
+    regdate = models.DateField()
 
     def __str__(self):
         return f'{self.uid}, {self.wid}, {self.bill}'
