@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+<table>
+    <tr>
+        {% load regdate_filter %}
+        {% for i in date %}
+            {% if {{date}}.{{i}} < {{mydate}}.{{i}}  %}
+                {% if i = 0 %}
+                <td><h3>Товары за прошлый год</h3>
+                <td><p>за {% date %}</p>
+                    {% for j in wlist %}
+                        <td><p>- {{wlist}}.{{j}}</p>
+                {% elif i = 3 %}
+                <td><h3>Товары за прошлый месяц</h3>
+                <td><p>за {% date %}</p>
+                    {% for j in wlist %}
+                        <td><p>- {{wlist}}.{{j}}</p>
+                {% else %}
+                <td><h3>Товары за прошлую неделю</h3>
+                <td><p>за {% date %}</p>
+                    {% for j in wlist %}
+                        <td><p>- {{wlist}}.{{j}}</p>
+                {% endif %}
+
+            {% elif i = 1 && {{date}}.{{i}}|add - {{mydate}}.{{i}} <= 7 %}
+
+            {% else %}
+            <td><h3>Недавно добавленные товары</h3>
+            <td><p>за {% date %}</p>
+                {% for j in wlist %}
+                    <td><p>- {{wlist}}.{{j}}</p>
+                </td>
+            {% endif %}
+            {% endfor %}
+    </tr>
+</table>

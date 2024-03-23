@@ -26,5 +26,10 @@ class Orders(models.Model):
 
     def __str__(self):
         return f'{self.uid}, {self.wid}, {self.bill}'
+    
+class OrdersMem(models.Model):
+    uid = models.TextField(default= '')
+    wid = models.TextField(default= '')
+    regdate = models.DateField()
 
 # Create your models here.

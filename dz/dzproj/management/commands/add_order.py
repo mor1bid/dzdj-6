@@ -34,13 +34,17 @@ class Command(BaseCommand):
                 order = Orders.objects.get(pk=myid)
                 order.wid += ', ' + str(ware)
                 order.bill += myprice
-                order.regdate = '2024-03-14'
+                order.regdate = fdate
                 order.save()
+                memory = OrdersMem(uid = name, wid = myware, regdate = fdate)
+                memory.save()
                 self.stdout.write('Заказ добавлен к существующему')
                 return 0
             elif myware == ware and myprice == price:
-                order = Orders(uid = name, wid = myware, bill = myprice, regdate = '2024-02-21')
+                order = Orders(uid = name, wid = myware, bill = myprice, regdate = fdate)
                 order.save()
+                memory = OrdersMem(uid = name, wid = myware, regdate = fdate)
+                memory.save()
                 self.stdout.write(f"Заказ добавлен. Номер вашего заказа: {getattr(Orders.objects.latest('id'), Orders._meta.get_field('id').attname)}")
                 return 0
             if w==waresize:
