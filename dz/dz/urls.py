@@ -21,5 +21,5 @@ from dzproj.views import *
 urlpatterns = [
     path('', index, name='index'),
     path('about/', about, name='about'),
-    path('filter/', regdate_filter, name='filter'),
+    path('filter/<myid>', regdate_filter, name='filter'),
 ]

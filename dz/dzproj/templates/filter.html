@@ -1,6 +1,15 @@
 {% extends 'index.html' %}
 <table>
     <tr>
-        <td><p>За {% date %} - {% wlist %}</p></td>
+        {% if n == 0 and date < mydate %}
+            <td><h3>Товары за прошлый год</h3>
+            <td><p>За date - wlist</p>
+        {% elif n == 2 and date < mydate %}
+            <td><h3>Товары за прошлый месяц</h3>
+            <td><p>За date - wlist</p>
+        {% elif n == 1 and date|add - mydate >= 7 %}
+            <td><h3>Товары за прошлую неделю</h3>
+            <td><p>За date - wlist</p></td>
+        {% endif %}
     </tr>
 </table>

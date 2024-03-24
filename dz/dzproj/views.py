@@ -21,14 +21,7 @@ def regdate_filter(request, myid):
         ymd = dlist[0].split('-')
         ymd = list(map(int, ymd))
         for j in range(len(ymd)):
-            if j == 1 and mydate[j] - ymd[j] >= 7:
-                return render(request, 'filterweek.html', {'date': dlist[0], 'wlist': wlist[i]})
-            elif ymd[j] < mydate[j]:
-                if j == 0:
-                    return render(request, 'filteryear.html', {'date': dlist[0], 'wlist': wlist[i]})
-                else:
-                    return render(request, 'filtermonth.html', {'date': dlist[0], 'wlist': wlist[i]})
-        # return render(request, 'filter.html', {'ware': wlist, 'date': map(int, ymd), 'mydate': map(int, mydate)})
+            return render(request, 'filter.html', {'ware': wlist[i], 'date': ymd[j], 'mydate': mydate[j], 'n': j})
 
 
 
