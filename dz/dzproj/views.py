@@ -20,7 +20,6 @@ def regdate_filter(request, myid):
         ymd = dlist[0].split('-')
         ymd = list(map(int, ymd))
         for j in range(len(ymd)):
-            print(j)
             context = {'ware': wlist[i], 'date': ymd[j], 'mydate': mydate[j], 'n': j}
             if ymd[j] < mydate[j] or mydate[j] - ymd[j] >= 7:
                 print(context)
