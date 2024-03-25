@@ -10,7 +10,6 @@ def about(request):
 def regdate_filter(request, myid):
     me = Client.objects.get(pk=myid)
     me = me.name
-    print(me)
     mydate = str(datetime.now().date()).split('-')
     mydate = list(map(int, mydate))
     dates = Orders.objects.values_list('regdate', flat=True)
@@ -21,7 +20,11 @@ def regdate_filter(request, myid):
         ymd = dlist[0].split('-')
         ymd = list(map(int, ymd))
         for j in range(len(ymd)):
-            return render(request, 'filter.html', {'ware': wlist[i], 'date': ymd[j], 'mydate': mydate[j], 'n': j})
+            print(j)
+            context = {'ware': wlist[i], 'date': ymd[j], 'mydate': mydate[j], 'n': j}
+            if ymd[j] < mydate[j] or mydate[j] - ymd[j] >= 7:
+                print(context)
+                return render(request, 'filter.html', context)
 
 
 
