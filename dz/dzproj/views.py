@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from django.urls import path
+from django.shortcuts import render
+from django.core.files.storage import FileSystemStorage
 from datetime import datetime
 from .models import *
 from .forms import *
@@ -37,7 +37,9 @@ def add_wim(request):
                 wares = Ware.objects.get(pk=i)
                 wid = wares.pk
                 if myid == wid:
-                    # wares.image = image.name
+                    # wares.image = image
+                    fs = FileSystemStorage()
+                    fs.save(image.name, image)
                     wares.save(force_update=image, update_fields=wares.image)
                     print('Готово')
                 elif i == waresize or myid > waresize:
