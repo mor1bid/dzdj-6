@@ -10,7 +10,7 @@ class Client(models.Model):
     regdate = models.DateTimeField(auto_now_add=True)
 
 class Ware(models.Model):
-    image = models.ImageField(default='', width_field=16, height_field=35, upload_to='media', storage='media')
+    image = models.ImageField(null=True, blank=True, upload_to='media', storage='media')
     name = models.TextField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
