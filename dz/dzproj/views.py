@@ -2,6 +2,7 @@ from django.shortcuts import render, get_list_or_404
 from django.urls import path
 from datetime import datetime
 from .models import *
+from .forms import *
 
 def index(request):
     return render(request, 'index.html', {'title':'Index'})
@@ -24,6 +25,26 @@ def regdate_filter(request, myid):
             if ymd[j] < mydate[j] or mydate[j] - ymd[j] >= 7:
                 print(context)
                 return render(request, 'filter.html', context)
+def add_wim(request):
+    if request.method == 'POST':
+        form = WareForm(request.POST)
+        waresize = Ware.objects.count()
+        id = Ware._meta.get_field('id')
+        if form.is_valid():
+            myid = form.cleaned_data['wid']
+            image = form.changed_data['image']
+            for i in range(1, waresize):
+                obj = Ware.objects.get(pk=i)
+                wid = getattr(obj, id.attname)
+                if myid == wid:
+                    ware = Ware.objects.get(pk=wid)
+                    ware.image = image
+                    print('Готово')
+                else:
+                    print('Ошибка')
+    else:
+        form = WareForm()
+    return render(request, 'addwim.html', {'form': form})
 
 
 

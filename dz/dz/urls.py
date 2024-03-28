@@ -22,4 +22,5 @@ urlpatterns = [
     path('', index, name='index'),
     path('about/', about, name='about'),
     path('filter/<myid>', regdate_filter, name='filter'),
+    path('addwim', add_wim, name='addimage')
 ]
