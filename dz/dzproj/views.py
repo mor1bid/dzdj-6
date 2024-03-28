@@ -26,10 +26,12 @@ def regdate_filter(request, myid):
                 print(context)
                 return render(request, 'filter.html', context)
 def add_wim(request):
+    img = Ware._meta.get_field('image')
+    wares = getattr(Ware.objects.first(), str(img.attname))
     if request.method == 'POST':
-        form = WareForm(request.POST, request.FILES)
+        form = WareForm(request.POST, request.FILES, instance=wares)
         waresize = Ware.objects.count()
-        id = Ware._meta.get_field('id')
+        id = Ware._meta.get_field(id)
         if form.is_valid():
             myid = form.cleaned_data['wid']
             image = form.cleaned_data['image']
@@ -46,7 +48,7 @@ def add_wim(request):
                     print('Ошибка')
     else:
         form = WareForm()
-    return render(request, 'addwim.html', {'form': form})
+    return render(request, 'addwim.html', {'form': form, 'image': wares.image })
 
 
 
