@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_object_or_404
 from django.urls import path
 from datetime import datetime
 from .models import *
@@ -27,20 +27,20 @@ def regdate_filter(request, myid):
                 return render(request, 'filter.html', context)
 def add_wim(request):
     if request.method == 'POST':
-        form = WareForm(request.POST)
+        form = WareForm(request.POST, request.FILES)
         waresize = Ware.objects.count()
         id = Ware._meta.get_field('id')
         if form.is_valid():
             myid = form.cleaned_data['wid']
-            image = form.changed_data['image']
+            image = form.cleaned_data['image']
             for i in range(1, waresize):
-                obj = Ware.objects.get(pk=i)
-                wid = getattr(obj, id.attname)
+                wares = Ware.objects.get(pk=i)
+                wid = wares.pk
                 if myid == wid:
-                    ware = Ware.objects.get(pk=wid)
-                    ware.image = image
+                    # wares.image = image.name
+                    wares.save(force_update=image, update_fields=wares.image)
                     print('Готово')
-                else:
+                elif i == waresize or myid > waresize:
                     print('Ошибка')
     else:
         form = WareForm()
