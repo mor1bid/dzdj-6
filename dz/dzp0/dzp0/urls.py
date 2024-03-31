@@ -1,5 +1,5 @@
 """
-URL configuration for dz project.
+URL configuration for dzp0 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,12 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from dzproj.views import *
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('admin/', admin.site.urls, name='admin'),
-    path('about/', about, name='about'),
-    path('filter/<myid>', regdate_filter, name='filter'),
-    path('addwim/', add_wim, name='addimage')
+    path('admin/', admin.site.urls),
 ]
