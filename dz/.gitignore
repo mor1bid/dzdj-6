@@ -1,2 +1,6 @@
 __pycache__
 dzproj/media/*
+dzproj/static/*
+*.sqlite3
+*.log
+*.pyc
