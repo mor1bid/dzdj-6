@@ -17,6 +17,10 @@ class Ware(models.Model):
     count = models.CharField(max_length=100)
     regdate = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def total_price(self):
+        return sum(ware.price for ware in Ware.objects.all())
+
 class Orders(models.Model):
     uid = LinkColumn('dz:dzproj_client', args=[Accessor('pk')])
     uid = models.TextField(default= '')

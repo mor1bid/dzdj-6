@@ -24,5 +24,5 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('filter/<myid>', regdate_filter, name='filter'),
     path('addwim/', add_wim, name='addimage'),
-    path('__debug__/', include('debug_toolbar.urls'))
+    # path('__debug__/', include('debug_toolbar.urls'))
 ]

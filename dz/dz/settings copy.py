@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,16 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-s8!+gsd4x2e#()_b8s(%xfauro!k^1f88k&mo06e_otl8bss^_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1'
-    'mor1bid.pythonanywhere.com'
 ]
 
 INTERNAL_IPS = [
@@ -90,15 +86,12 @@ WSGI_APPLICATION = 'dz.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mor1bid$default',
-        'USER':'mor1bid',
-        'PASSWORD':os.getenv('MYSQL_PASSWORD'),
-        'HOST':'mor1bid.mysql.pythonanywhere-services.com',
-        'OPTIONS': {
-            'init_command': "SET NAMES 'utf8mb4';SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset': 'utf8mb4',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'USER':'root',
+        'PASSWORD':'system',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
     }
 }
 
@@ -138,7 +131,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

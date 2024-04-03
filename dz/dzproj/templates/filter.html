@@ -1,15 +1,13 @@
 {% extends 'index.html' %}
-<table>
-    <tr>
-        {% if n == 0 %}
-            <td><h3>Товары за прошлый год</h3>
-            <td><p>За date - wlist</p>
-        {% elif n == 2 %}
-            <td><h3>Товары за прошлый месяц</h3>
-            <td><p>За date - wlist</p>
-        {% elif n == 1 %}
-            <td><h3>Товары за прошлую неделю</h3>
-            <td><p>За date - wlist</p></td>
+{% block content %}
+    {% if n == 0 %}
+        <h3>Товары за прошлый год</h3>
+        <p>За {{date}} - {{wlist}}</p>
+    {% elif n == 2 %}
+        <h3>Товары за прошлый месяц</h3>
+        <p>За {{date}} - {{wlist}}</p>
+    {% elif n == 1 %}
+        <h3>Товары за прошлую неделю</h3>
+        <p>За {{date}} - {{wlist}}</p>
         {% endif %}
-    </tr>
-</table>
+{% endblock %}
