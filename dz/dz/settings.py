@@ -30,6 +30,7 @@ CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    '10.0.5.178',
     'mor1bid.pythonanywhere.com'
 ]
 
